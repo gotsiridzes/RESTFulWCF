@@ -10,7 +10,7 @@ namespace Client
         public static class Methods
         {
             internal static string Post = "api/post";
-            internal static string List = "api/list";
+            internal static string ListPeople = "api/listpeople";
         }
     }
 }

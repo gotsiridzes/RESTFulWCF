@@ -35,7 +35,7 @@ namespace RESTFulWCF
         [OperationContract, WebInvoke(BodyStyle = WebMessageBodyStyle.Bare, Method = "POST", UriTemplate = "api/post", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         void Post(Person person);
         
-        [OperationContract, WebInvoke(BodyStyle = WebMessageBodyStyle.Bare, Method = "GET", UriTemplate = "api/list", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        [OperationContract, WebInvoke(BodyStyle = WebMessageBodyStyle.Bare, Method = "GET", UriTemplate = "api/listpeople", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
         IEnumerable<Person> List();
     }
 
