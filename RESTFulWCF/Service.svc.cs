@@ -14,51 +14,19 @@ namespace RESTFulWCF
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class Service : IService
     {
-        public string GetData(string value)
+        public Person Get(string id)
         {
-            return string.Format("You entered: {0}", value);
+            return Repository.People.Find(x => x.Id == int.Parse(id));
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public IEnumerable<Person> List()
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            return Repository.People;
         }
 
-        public CompositeType GetDataUsingDataContract()
+        public void Post(Person person)
         {
-            return new CompositeType
-            {
-                BoolValue = true,
-                StringValue = "test value"
-            };
-        }
-
-        public IEnumerable<CompositeType> GetDataUsingDataContracts()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                yield return new CompositeType
-                {
-                    BoolValue = true,
-                    StringValue = $"test value {i}"
-                };
-            }
-        }
-
-        public IEnumerable<string> GetStrings()
-        {
-            for (int i = 0; i < 50; i++)
-            {
-                yield return $"test data {i}";
-            }
+            Repository.People.Add(person);
         }
     }
 }

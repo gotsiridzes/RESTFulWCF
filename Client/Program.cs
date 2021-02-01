@@ -7,11 +7,9 @@ namespace Client
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            //var stringsResult = await ServiceClient.GetStringsAsync();
+            //var dynamicData = await ServiceClient.GetDynamicData(1);
 
-            //var enteredResult = await ServiceClient.TestInput("test dataaa");
-
-            var compositeTypes = await ServiceClient.GetCompositeTypes();
+            var person = await ServiceClient.Get(1);
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();

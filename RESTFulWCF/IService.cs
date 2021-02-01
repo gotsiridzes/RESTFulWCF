@@ -14,42 +14,42 @@ namespace RESTFulWCF
     public interface IService
     {
 
-        [OperationContract, WebGet(UriTemplate = "api/getdata/{value}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
-        string GetData(string value);
+        //[OperationContract, WebGet(UriTemplate = "api/getdata/{value}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        //string GetData(string value);
 
-        [OperationContract, WebGet(UriTemplate = "api/GetStrings", ResponseFormat = WebMessageFormat.Json, RequestFormat=WebMessageFormat.Json)]
-        IEnumerable<string> GetStrings();
+        //[OperationContract, WebGet(UriTemplate = "api/GetStrings", ResponseFormat = WebMessageFormat.Json, RequestFormat=WebMessageFormat.Json)]
+        //IEnumerable<string> GetStrings();
 
-        [OperationContract, WebInvoke(UriTemplate="api/GetDataUsingDataContract", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, Method = "POST")]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        //[OperationContract, WebInvoke(UriTemplate="api/GetDataUsingDataContract", BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json, Method = "POST")]
+        //Person GetDataUsingDataContract(Person composite);
+
+        ////[OperationContract, WebGet(UriTemplate = "api/GetDataUsingDataContract", ResponseFormat = WebMessageFormat.Json, RequestFormat=WebMessageFormat.Json)]
+        //Person GetDataUsingDataContract();
 
         //[OperationContract, WebGet(UriTemplate = "api/GetDataUsingDataContract", ResponseFormat = WebMessageFormat.Json, RequestFormat=WebMessageFormat.Json)]
-        CompositeType GetDataUsingDataContract();
+        //IEnumerable<Person> GetDataUsingDataContracts();
 
-        [OperationContract, WebGet(UriTemplate = "api/GetDataUsingDataContracts", ResponseFormat = WebMessageFormat.Json, RequestFormat=WebMessageFormat.Json)]
-        IEnumerable<CompositeType> GetDataUsingDataContracts();
+        [OperationContract, WebInvoke(BodyStyle = WebMessageBodyStyle.Bare, Method = "GET", UriTemplate = "api/get/{id}", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        Person Get(string id);
+
+        [OperationContract, WebInvoke(BodyStyle = WebMessageBodyStyle.Bare, Method = "POST", UriTemplate = "api/post", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        void Post(Person person);
+        
+        [OperationContract, WebInvoke(BodyStyle = WebMessageBodyStyle.Bare, Method = "GET", UriTemplate = "api/list", ResponseFormat = WebMessageFormat.Json, RequestFormat = WebMessageFormat.Json)]
+        IEnumerable<Person> List();
     }
 
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
-    public class CompositeType
+    public class Person
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
         [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
+        public int Id { get; set; }
+        
         [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        public string FirstName { get; set; }
+        
+        [DataMember]
+        public string LastName { get; set; }
     }
 }
